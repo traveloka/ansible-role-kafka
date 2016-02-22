@@ -1,31 +1,31 @@
 ---
 # tasks file for kafka
 
-- name: download kafka
-  become: true
-  become_method: sudo
-  unarchive:
-    src: "{{ kafka_url }}"
-    dest: /opt
-    copy: no
-    creates: "{{ kafka_dest }}"
-    owner: root
-    group: root
+- block:
+  - name: download kafka
+    unarchive:
+      src: "{{ kafka_url }}"
+      dest: /opt
+      copy: no
+      creates: "{{ kafka_dest }}"
+      owner: root
+      group: root
 
-- name: link the preferred kafka version
-  become: true
-  become_method: sudo
-  file:
-    path: "{{ kafka_prefix }}/kafka"
-    src: "{{ kafka_dest }}"
-    state: link
+  - name: link the preferred kafka version
+    file:
+      path: "{{ kafka_prefix }}/kafka"
+      src: "{{ kafka_dest }}"
+      state: link
 
-- name: kafka server config
+  - name: kafka server config
+    template:
+      dest: "{{ kafka_dest }}/config/server.properties"
+      src: "server-{{ kafka_main_ver }}.properties.j2"
+      owner: root
+      group: root
+      mode:  0644
+
   become: true
   become_method: sudo
-  template:
-    dest: "{{ kafka_dest }}/config/server.properties"
-    src: "server-{{ kafka_main_ver }}.properties.j2"
-    owner: root
-    group: root
-    mode:  0644
+  tags:
+    - kafka

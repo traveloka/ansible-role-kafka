@@ -1,0 +1,31 @@
+---
+# tasks file for kafka
+
+- name: download kafka
+  become: true
+  become_method: sudo
+  unarchive:
+    src: "{{ kafka_url }}"
+    dest: /opt
+    copy: no
+    creates: "{{ kafka_dest }}"
+    owner: root
+    group: root
+
+- name: link the preferred kafka version
+  become: true
+  become_method: sudo
+  file:
+    path: "{{ kafka_prefix }}/kafka"
+    src: "{{ kafka_dest }}"
+    state: link
+
+- name: kafka server config
+  become: true
+  become_method: sudo
+  template:
+    dest: "{{ kafka_dest }}/config/server.properties"
+    src: "server-{{ kafka_major_ver }}.properties.j2"
+    owner: root
+    group: root
+    mode:  0644

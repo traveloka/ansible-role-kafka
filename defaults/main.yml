@@ -1,0 +1,14 @@
+---
+# defaults file for kafka
+
+kafka_apache_mirror: http://mirror.wanxp.id/apache
+kafka_prefix: /opt
+kafka_scala_ver: "2.10"
+kafka_main_ver: "0.8.2"
+kafka_patch_ver: "2"
+kafka_ver: "{{ kafka_main_ver }}.{{ kafka_patch_ver }}"
+kafka_url:
+  "{{ kafka_apache_mirror }}/kafka/{{ kafka_ver }}/kafka_{{ kafka_scala_ver }}-{{ kafka_ver }}.tgz"
+kafka_dest: "{{ kafka_prefix }}/kafka_{{ kafka_scala_ver }}-{{ kafka_ver }}"
+
+kafka_port: 9092

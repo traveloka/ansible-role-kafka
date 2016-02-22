@@ -25,7 +25,7 @@
   become_method: sudo
   template:
     dest: "{{ kafka_dest }}/config/server.properties"
-    src: "server-{{ kafka_major_ver }}.properties.j2"
+    src: "server-{{ kafka_main_ver }}.properties.j2"
     owner: root
     group: root
     mode:  0644

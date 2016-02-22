@@ -15,18 +15,19 @@ Role Variables
 
     - name: kafka_scala_ver
       description: Scala version used to build Kafka
-	  default: 2.10 (override to 2.11 if you want to use Kafka 0.9.x)
-	  
+      default: 2.10 (override to 2.11 if you want to use Kafka 0.9.x)
+      
     - name: kafka_main_ver
-	  description: Kafka main version
-	  default: 0.8.2
-	  
+      description: Kafka main version
+      default: 0.8.2
+      
     - name: kafka_patch_ver
-	  description: Kafka patch version
-	  default: 2
+      description: Kafka patch version
+      default: 2
+	  
     - name: kafka_port
-	  description: the port the Kafka socket server listens on
-	  default: 9092
+      description: the port the Kafka socket server listens on
+      default: 9092
 
 Dependencies
 ------------
@@ -39,8 +40,8 @@ Example Playbook
     - hosts: servers
       roles:
         - role: traveloka.kafka
-	      kafka_main_ver: 0.8.2
-		  kafka_port: 9092
+          kafka_main_ver: 0.8.2
+          kafka_port: 9092
 
 License
 -------

@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/traveloka/ansible-role-kafka.svg?branch=master)](https://travis-ci.org/traveloka/ansible-role-kafka)
 # Ansible Role: Kafka
 
 An Ansible role that installs Kafka on supported Ubuntu LTS releases.
